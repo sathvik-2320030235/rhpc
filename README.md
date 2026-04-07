@@ -54,3 +54,25 @@ python3 kmeans_gui.py
 ```
 
 On Linux it uses `./build.sh` and runs `./kmeans_serial` / `./kmeans_parallel` when present.
+
+
+
+
+
+
+make
+export DISPLAY=:0
+python3 bfs_gui.py
+mpirun -np 2 ./bfs_baseline 15 16
+mpirun -np 2 ./bfs_hybrid 15 16
+python3 kmeans_gui.py
+
+./build.sh
+./kmeans_serial 2000 8 5 10
+OMP_NUM_THREADS=4 ./kmeans_omp 2000 8 5 10
+
+./build.sh              # already OK
+export OMP_NUM_THREADS=4
+mpiexec -n 2 ./kmeans_parallel 2000 8 5 10
+python3 kmeans_gui.py
+
